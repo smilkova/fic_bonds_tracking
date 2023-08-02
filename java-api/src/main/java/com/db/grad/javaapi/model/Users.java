@@ -1,15 +1,14 @@
 package com.db.grad.javaapi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "users")
+public class Users {
     @Id
-    private long id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="user_id")
+    private int userid;
 
     private String bondholder;
 
