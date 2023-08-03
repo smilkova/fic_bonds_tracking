@@ -9,25 +9,27 @@ public class Securities {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int security_id;
-    private float unit_price;
-    private String bond_currency;
-    private float coupon_rate;
-    private String cusip;
-    private String isin;
-    private int face_value;
-    private String issuer_name;
-    private Date mature_date;
-    private String status;
-    private String bond_type;
-    @ManyToOne
-    @JoinColumn(name="book_id", nullable = false)
-    private Book book_id;
-    //TODO: missing foreign keys!
-    //book_id_fk2
-
-    @Id
     @Column(name = "security_id", nullable = false)
+    private int security_id;
+    @Column(name = "bond_currency", nullable = false)
+    private String bond_currency;
+    @Column(name = "coupon_rate", nullable = false)
+    private float coupon_rate;
+    @Column(name = "cusip", nullable = false)
+    private String cusip;
+    @Column(name = "isin", nullable = false)
+    private String isin;
+    @Column(name = "face_value", nullable = false)
+    private int face_value;
+    @Column(name = "issuer_name", nullable = false)
+    private String issuer_name;
+    @Column(name = "mature_date")
+    private Date mature_date;
+    @Column(name = "status", nullable = false)
+    private String status;
+    @Column(name = "bond_type", nullable = false)
+    private String bond_type;
+
     public int getSecurity_id() {
         return security_id;
     }
@@ -36,16 +38,6 @@ public class Securities {
         this.security_id = security_id;
     }
 
-    @Column(name = "unit_price", nullable = false)
-    public float getUnit_price() {
-        return unit_price;
-    }
-
-    public void setUnit_price(float unit_price) {
-        this.unit_price = unit_price;
-    }
-
-    @Column(name = "bond_currency", nullable = false)
     public String getBond_currency() {
         return bond_currency;
     }
@@ -54,7 +46,6 @@ public class Securities {
         this.bond_currency = bond_currency;
     }
 
-    @Column(name = "coupon_rate", nullable = false)
     public float getCoupon_rate() {
         return coupon_rate;
     }
@@ -63,7 +54,6 @@ public class Securities {
         this.coupon_rate = coupon_rate;
     }
 
-    @Column(name = "cusip", nullable = false)
     public String getCusip() {
         return cusip;
     }
@@ -72,7 +62,6 @@ public class Securities {
         this.cusip = cusip;
     }
 
-    @Column(name = "isin", nullable = false)
     public String getIsin() {
         return isin;
     }
@@ -81,7 +70,6 @@ public class Securities {
         this.isin = isin;
     }
 
-    @Column(name = "face_value", nullable = false)
     public int getFace_value() {
         return face_value;
     }
@@ -90,7 +78,6 @@ public class Securities {
         this.face_value = face_value;
     }
 
-    @Column(name = "issuer_name", nullable = false)
     public String getIssuer_name() {
         return issuer_name;
     }
@@ -99,7 +86,6 @@ public class Securities {
         this.issuer_name = issuer_name;
     }
 
-    @Column(name = "mature_date")
     public Date getMature_date() {
         return mature_date;
     }
@@ -108,7 +94,6 @@ public class Securities {
         this.mature_date = mature_date;
     }
 
-    @Column(name = "status", nullable = false)
     public String getStatus() {
         return status;
     }
@@ -117,7 +102,6 @@ public class Securities {
         this.status = status;
     }
 
-    @Column(name = "bond_type", nullable = false)
     public String getBond_type() {
         return bond_type;
     }
@@ -126,19 +110,11 @@ public class Securities {
         this.bond_type = bond_type;
     }
 
-    public Book getBook_id() {
-        return book_id;
-    }
-
-    public void setBook_id(Book book_id) {
-        this.book_id = book_id;
-    }
 
     @Override
     public String toString() {
         return "Securities{" +
                 "security_id=" + security_id +
-                ", unit_price=" + unit_price +
                 ", bond_currency='" + bond_currency + '\'' +
                 ", coupon_rate=" + coupon_rate +
                 ", cusip='" + cusip + '\'' +
@@ -147,8 +123,7 @@ public class Securities {
                 ", issuer_name='" + issuer_name + '\'' +
                 ", mature_date=" + mature_date +
                 ", status='" + status + '\'' +
-                ", bond_type='" + bond_type + '\'' +
-                ", book_id=" + book_id +
+                ", bond_type='" + bond_type +
                 '}';
     }
 }

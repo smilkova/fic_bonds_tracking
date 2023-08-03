@@ -7,13 +7,12 @@ import javax.persistence.*;
 public class Book {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "book_id", nullable = false)
     private int book_id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
-
-    @Id
-    @Column(name = "book_id", nullable = false)
     public int getBook_id() {
         return book_id;
     }
@@ -22,7 +21,6 @@ public class Book {
         this.book_id = book_id;
     }
 
-    @Column(name = "name", nullable = false)
     public String getName() {
         return name;
     }
