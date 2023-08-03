@@ -21,10 +21,12 @@ public class Securities {
     private String status;
     private String bond_type;
     private int book_id;
-
-
     //TODO: missing foreign keys!
     //book_id_fk2
+    @ManyToOne
+    @JoinColumn(name="book_id", nullable = false)
+    private Book book_id_fk2;
+
     @Id
     @Column(name = "security_id", nullable = false)
     public int getSecurity_id() {
@@ -134,6 +136,13 @@ public class Securities {
         this.book_id = book_id;
     }
 
+    public Book getBook_id_fk2() {
+        return book_id_fk2;
+    }
+
+    public void setBook_id_fk2(Book book_id_fk2) {
+        this.book_id_fk2 = book_id_fk2;
+    }
 
     @Override
     public String toString() {
@@ -150,6 +159,7 @@ public class Securities {
                 ", status='" + status + '\'' +
                 ", bond_type='" + bond_type + '\'' +
                 ", book_id=" + book_id +
+                ", book_id_fk2=" + book_id_fk2 +
                 '}';
     }
 }

@@ -24,6 +24,17 @@ public class Trade {
     //book_id_fk3
     //security_id_fk1
     //cp_id_fk
+    @ManyToOne
+    @JoinColumn(name="book_id", nullable = false)
+    private Book book_id_fk3;
+
+    @ManyToOne
+    @JoinColumn(name="security_id", nullable = false)
+    private Securities security_id_fk1;
+
+    @ManyToOne
+    @JoinColumn(name="cp_id", nullable = false)
+    private Counter_party cp_id_fk;
 
     @Id
     @Column(name = "trade_id", nullable = false)
@@ -114,6 +125,30 @@ public class Trade {
         this.cp_id = cp_id;
     }
 
+    public Book getBook_id_fk3() {
+        return book_id_fk3;
+    }
+
+    public void setBook_id_fk3(Book book_id_fk3) {
+        this.book_id_fk3 = book_id_fk3;
+    }
+
+    public Securities getSecurity_id_fk1() {
+        return security_id_fk1;
+    }
+
+    public void setSecurity_id_fk1(Securities security_id_fk1) {
+        this.security_id_fk1 = security_id_fk1;
+    }
+
+    public Counter_party getCp_id_fk() {
+        return cp_id_fk;
+    }
+
+    public void setCp_id_fk(Counter_party cp_id_fk) {
+        this.cp_id_fk = cp_id_fk;
+    }
+    
     @Override
     public String toString() {
         return "Trade{" +
@@ -127,6 +162,9 @@ public class Trade {
                 ", book_id=" + book_id +
                 ", security_id=" + security_id +
                 ", cp_id=" + cp_id +
+                ", book_id_fk3=" + book_id_fk3 +
+                ", security_id_fk1=" + security_id_fk1 +
+                ", cp_id_fk=" + cp_id_fk +
                 '}';
     }
 }
