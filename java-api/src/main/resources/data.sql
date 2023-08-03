@@ -31,11 +31,9 @@ INSERT INTO book(book_id, name) VALUES (28,'trading_book_4');
 
 
 --users database
-CREATE TABLE users (
-  user_id int NOT NULL AUTO_INCREMENT,
-  name varchar(255) NOT NULL,
-  email varchar(255) NOT NULL,
-  role varchar(255) NOT NULL,
-  PRIMARY KEY (user_id)
-);
-
+INSERT INTO users(user_id, name, email, role) VALUES (1, 'Christopher Chan', 'Chris1@bank.com', 'Trader');
+INSERT INTO users(user_id, name, email, role) VALUES (2, 'Jimin Park', 'Jimin1@bank.com', 'Trader');
+INSERT INTO users(user_id, name, email, role) VALUES (3, 'Sarah Smith', 'SSmith2@bank.com', 'Trader');
+INSERT INTO users(user_id, name, email, role) VALUES (4, 'Sydney Leishman', 'SydneyLeish@bank.com', 'Trader');
+INSERT INTO users(user_id, name, email, role) VALUES (5, 'Mike Ciruzzi', 'MCur5@bank.com', 'Trader');
+INSERT INTO users(user_id, name, email, role) VALUES (6, 'Lisa Desai', 'lisa01@bank.com', 'Trader');
