@@ -8,11 +8,11 @@ public class CounterParty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cp_id;
-    private int user_id;
-    // TODO: foreign key user_id_fk2
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
-    private Users user_id_fk2;
+    private Users user_id;
+    // TODO: foreign key user_id_fk2
+
 
     @Id
     @Column(name = "cp_id", nullable = false)
@@ -24,21 +24,12 @@ public class CounterParty {
         this.cp_id = cp_id;
     }
 
-    @Column(name = "user_id", nullable = false)
-    public int getUser_id() {
+    public Users getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Users user_id) {
         this.user_id = user_id;
-    }
-
-    public Users getUser_id_fk2() {
-        return user_id_fk2;
-    }
-
-    public void setUser_id_fk2(Users user_id_fk2) {
-        this.user_id_fk2 = user_id_fk2;
     }
 
     @Override
@@ -46,7 +37,6 @@ public class CounterParty {
         return "CounterParty{" +
                 "cp_id=" + cp_id +
                 ", user_id=" + user_id +
-                ", user_id_fk2=" + user_id_fk2 +
                 '}';
     }
 }
