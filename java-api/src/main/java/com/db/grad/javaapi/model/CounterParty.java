@@ -7,15 +7,12 @@ import javax.persistence.*;
 public class CounterParty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cp_id;
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
-    private Users user_id;
-    // TODO: foreign key user_id_fk2
-
-
-    @Id
     @Column(name = "cp_id", nullable = false)
+    private int cp_id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
     public int getCp_id() {
         return cp_id;
     }
@@ -24,19 +21,19 @@ public class CounterParty {
         this.cp_id = cp_id;
     }
 
-    public Users getUser_id() {
-        return user_id;
+    public String getName() {
+        return name;
     }
 
-    public void setUser_id(Users user_id) {
-        this.user_id = user_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "CounterParty{" +
                 "cp_id=" + cp_id +
-                ", user_id=" + user_id +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

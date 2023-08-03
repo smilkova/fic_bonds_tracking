@@ -7,12 +7,16 @@ import javax.persistence.*;
 public class Users {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int user_id;
-    private String bondholder;
-
-
-    @Id
     @Column(name = "user_id", nullable = false)
+    private int user_id;
+    @Column(name = "name", nullable = false)
+    private String name;
+    @Column(name = "email", nullable = false)
+    private String email;
+    @Column(name = "role", nullable = false)
+    private String role;
+
+
     public int getUser_id() {
         return user_id;
     }
@@ -21,21 +25,37 @@ public class Users {
         this.user_id = user_id;
     }
 
-    @Column(name = "bondholder", nullable = false)
-    public String getBondholder() {
-        return bondholder;
+    public String getName() {
+        return name;
     }
 
-    public void setBondholder(String bondholder) {
-        this.bondholder = bondholder;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     @Override
     public String toString() {
         return "Users{" +
                 "user_id=" + user_id +
-                ", bondholder='" + bondholder + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

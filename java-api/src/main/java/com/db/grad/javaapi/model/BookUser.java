@@ -1,30 +1,20 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "book_user")
-public class BookUser {
-
+@IdClass(BookUser.class)
+public class BookUser implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int book_user_id;
     @ManyToOne
     @JoinColumn(name="book_id", nullable = false)
     private Book book_id;
+    @Id
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     private Users user_id;
-
-    @Id
-    @Column(name = "book_user_id", nullable = false)
-    public int getBook_user_id() {
-        return book_user_id;
-    }
-
-    public void setBook_user_id(int book_user_id) {
-        this.book_user_id = book_user_id;
-    }
 
     public Book getBook_id() {
         return book_id;
@@ -46,8 +36,7 @@ public class BookUser {
     @Override
     public String toString() {
         return "BookUser{" +
-                "book_user_id=" + book_user_id +
-                ", book_id=" + book_id +
+                " book_id=" + book_id +
                 ", user_id=" + user_id +
                 '}';
     }
