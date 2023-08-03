@@ -34,7 +34,7 @@ public class Trade {
 
     @ManyToOne
     @JoinColumn(name="cp_id", nullable = false)
-    private Counter_party cp_id_fk;
+    private CounterParty cp_id_fk;
 
     @Id
     @Column(name = "trade_id", nullable = false)
@@ -141,14 +141,14 @@ public class Trade {
         this.security_id_fk1 = security_id_fk1;
     }
 
-    public Counter_party getCp_id_fk() {
+    public CounterParty getCp_id_fk() {
         return cp_id_fk;
     }
 
-    public void setCp_id_fk(Counter_party cp_id_fk) {
+    public void setCp_id_fk(CounterParty cp_id_fk) {
         this.cp_id_fk = cp_id_fk;
     }
-    
+
     @Override
     public String toString() {
         return "Trade{" +

@@ -3,8 +3,8 @@ package com.db.grad.javaapi.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "securities")
-public class Counter_party {
+@Table(name = "counter_party")
+public class CounterParty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cp_id;
@@ -43,7 +43,7 @@ public class Counter_party {
 
     @Override
     public String toString() {
-        return "Counter_party{" +
+        return "CounterParty{" +
                 "cp_id=" + cp_id +
                 ", user_id=" + user_id +
                 ", user_id_fk2=" + user_id_fk2 +
