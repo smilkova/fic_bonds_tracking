@@ -12,9 +12,9 @@ public class BookUser {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="book_user_id")
     private int id;
-
-    @OneToMany(mappedBy="book_user")
-    private Set<User> users;
-    @OneToMany(mappedBy="book_user")
-    private Set<Book> books;
+//
+//    @OneToMany(mappedBy="book_user")
+//    private Set<User> users;
+//    @OneToMany(mappedBy="book_user")
+//    private Set<Book> books;
 }
