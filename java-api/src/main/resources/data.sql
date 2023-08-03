@@ -28,14 +28,3 @@ INSERT INTO book(book_id, name) VALUES (26,'trading_book_4');
 INSERT INTO book(book_id, name) VALUES (27,'trading_book_4');
 INSERT INTO book(book_id, name) VALUES (28,'trading_book_4');
 
-
-
---users database
-CREATE TABLE users (
-  user_id int NOT NULL AUTO_INCREMENT,
-  name varchar(255) NOT NULL,
-  email varchar(255) NOT NULL,
-  role varchar(255) NOT NULL,
-  PRIMARY KEY (user_id)
-);
-
