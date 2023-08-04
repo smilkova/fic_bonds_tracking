@@ -53,3 +53,20 @@ INSERT INTO securities(security_id, isin, cusip, issuer_name, mature_date, coupo
 INSERT INTO securities(security_id, isin, cusip, issuer_name, mature_date, coupon_rate,bond_type,face_value,bond_currency,status) VALUES(26,'IE00B29LNP31','87973RAA8','First Norway Alpha Kl.IV','22/12/2030',1.123,'SOVN',340,'USD','active');
 INSERT INTO securities(security_id, isin, cusip, issuer_name, mature_date, coupon_rate,bond_type,face_value,bond_currency,status) VALUES(27,'IE00B29LNP31','87973RAA8','First Norway Alpha Kl.IV','22/12/2030',1.123,'SOVN',340,'USD','active');
 INSERT INTO securities(security_id, isin, cusip, issuer_name, mature_date, coupon_rate,bond_type,face_value,bond_currency,status) VALUES(28,'IE00B29LNP31','87973RAA8','First Norway Alpha Kl.IV','22/12/2030',1.123,'SOVN',340,'USD','active');
+
+
+INSERT INTO counter_party(cp_id,name) VALUES(1,'AZ Holdings Inc');
+INSERT INTO counter_party(cp_id,name) VALUES(2,'Acme co');
+INSERT INTO counter_party(cp_id,name) VALUES(3,'Sovereign Investments');
+INSERT INTO counter_party(cp_id,name) VALUES(4,'Astra Trading Ltd');
+INSERT INTO counter_party(cp_id,name) VALUES(5,'Muncipal Gov Of Orange County');
+INSERT INTO counter_party(cp_id,name) VALUES(6,'Goldman Sachs');
+INSERT INTO counter_party(cp_id,name) VALUES(7,'UBS');
+INSERT INTO counter_party(cp_id,name) VALUES(8,'Barclays');
+INSERT INTO counter_party(cp_id,name) VALUES(9,'British Telecom');
+INSERT INTO counter_party(cp_id,name) VALUES(10,'Pension Holdings');
+INSERT INTO counter_party(cp_id,name) VALUES(11,'Zurich Pension fund 4');
+
+
+
+
