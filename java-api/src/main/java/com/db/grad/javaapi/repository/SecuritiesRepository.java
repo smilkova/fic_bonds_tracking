@@ -11,7 +11,7 @@ public interface SecuritiesRepository extends JpaRepository<Securities, Integer>
             value = "select * from securities where " +
                     "mature_date >= DATE_SUB(:today_date, INTERVAL 5 DAY) and" +
                     "mature_date <= DATE_ADD(:today_date, INTERVAL 5 DAY)")
-    List<Securities> findByRecentAndNearMaturity(Securities today_date);
+    List<Securities> findByRecentAndNearMaturity(String today_date);
 
     @Query(nativeQuery = true,
             value = "select * from securities where " +
