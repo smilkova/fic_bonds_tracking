@@ -37,7 +37,7 @@ public class BookController {
     }
 //    TODO: might have to change the mapping
     @GetMapping("/books/{name}")
-    public ResponseEntity < Book > getBondByName(@PathVariable(value = "name") String name)
+    public ResponseEntity < Book > getBookByName(@PathVariable(value = "name") String name)
             throws ResourceNotFoundException {
         Book books = bookService.getBookByName(name);
         return ResponseEntity.ok().body(books);
@@ -50,9 +50,9 @@ public class BookController {
 
     @PutMapping("/books/{id}")
     public ResponseEntity < Book > updateBook(@PathVariable(value = "book_id") int id,
-                                            @Valid @RequestBody Book dogDetails) throws ResourceNotFoundException {
+                                            @Valid @RequestBody Book bookDetails) throws ResourceNotFoundException {
 
-        final Book updatedBooks = bookService.updateBookDetails(dogDetails);
+        final Book updatedBooks = bookService.updateBookDetails(bookDetails);
         return ResponseEntity.ok(updatedBooks);
     }
 
