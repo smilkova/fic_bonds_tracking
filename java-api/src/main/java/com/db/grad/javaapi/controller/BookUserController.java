@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v3")
@@ -31,17 +32,17 @@ public class BookUserController {
         return bookUserService.getAllBookUsers();
     }
 
-    @GetMapping("/bookuser/{book_id}")
-    public ResponseEntity < BookUser > findUsersForBook(@PathVariable(value = "book_id") Book book_id)
+    @GetMapping("/bookuserByBookID/{book_id}")
+    public ResponseEntity < Optional<List<Integer>> > findUsersForBook(@PathVariable(value = "book_id") int book_id)
             throws ResourceNotFoundException {
-        BookUser users = bookUserService.findUsersForBook(book_id);
+        Optional<List<Integer>> users = bookUserService.findUsersForBook(book_id);
         return ResponseEntity.ok().body(users);
     }
     //    TODO: might have to change the mapping
-    @GetMapping("/bookuser/{user_id}")
-    public ResponseEntity < BookUser > findBooksForUser(@PathVariable(value = "user_id") Users user_id)
+    @GetMapping("/bookuserByUserID/{user_id}")
+    public ResponseEntity < Optional<List<Integer>> > findBooksForUser(@PathVariable(value = "user_id") int user_id)
             throws ResourceNotFoundException {
-        BookUser users = bookUserService.findBooksForUser(user_id);
+        Optional<List<Integer>> users = bookUserService.findBooksForUser(user_id);
         return ResponseEntity.ok().body(users);
     }
 
@@ -49,26 +50,18 @@ public class BookUserController {
     public BookUser createBookUser(@Valid @RequestBody BookUser user) {
         return bookUserService.addBookUser(user);
     }
-
-    @PutMapping("/bookuser/{id}")
-    public ResponseEntity < BookUser > updateBookUser(@PathVariable(value = "user_id") int id,
-                                                @Valid @RequestBody BookUser userDetails) throws ResourceNotFoundException {
-
-        final BookUser updatedBookUser = bookUserService.updateBookUserDetails(userDetails);
-        return ResponseEntity.ok(updatedBookUser);
-    }
-
-    @DeleteMapping("/bookuser/{id}")
-    public Map < String, Boolean > deleteBookUser(@PathVariable(value = "id") int id)
-            throws ResourceNotFoundException {
-        boolean removed = bookUserService.removeBookUser(id);
-
-        Map < String, Boolean > response = new HashMap <>();
-        if( removed )
-            response.put("deleted", Boolean.TRUE);
-        else
-            response.put("deleted", Boolean.FALSE);
-
-        return response;
-    }
+    //TODO if we have time: not working
+//    @DeleteMapping("/bookuser/{book_id}/{user_id}")
+//    public Map < String, Boolean > deleteBookUser(@PathVariable(value = "book_id") int book_id, @PathVariable(value = "user_id") int user_id)
+//            throws ResourceNotFoundException {
+//        boolean removed = bookUserService.removeBookUser(book_id, user_id);
+//
+//        Map < String, Boolean > response = new HashMap <>();
+//        if( removed )
+//            response.put("deleted", Boolean.TRUE);
+//        else
+//            response.put("deleted", Boolean.FALSE);
+//
+//        return response;
+//    }
 }

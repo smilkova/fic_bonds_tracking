@@ -36,7 +36,7 @@ public class UsersController {
         return ResponseEntity.ok().body(users);
     }
     //    TODO: might have to change the mapping
-    @GetMapping("/users/{email}")
+    @GetMapping("/usersByEmail/{email}")
     public ResponseEntity < Users > getUserByEmail(@PathVariable(value = "email") String email)
             throws ResourceNotFoundException {
         Users users = userService.getUsersByEmail(email);
