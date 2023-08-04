@@ -25,6 +25,8 @@ public class Securities {
     private String issuer_name;
     @Column(name = "mature_date")
     private String mature_date;
+
+
     @Column(name = "status", nullable = false)
     private String status;
     @Column(name = "bond_type", nullable = false)

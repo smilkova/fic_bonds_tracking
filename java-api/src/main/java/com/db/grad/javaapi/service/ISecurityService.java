@@ -15,8 +15,7 @@ public interface ISecurityService {
 
     public Securities getSecuritiesById(int uniqueId);
 
-    public Securities getSecuritiesByisin(String isinNum);
-    public Securities getSecuritiesByCusip(String cusipNum);
+
 
     public Securities getbyStatus(String stat);
 

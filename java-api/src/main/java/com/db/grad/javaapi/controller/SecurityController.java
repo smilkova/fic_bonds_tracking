@@ -32,16 +32,27 @@ public class SecurityController {
 
 
     @GetMapping("/securities")
-    public List <Securities> getAllSecurities() {
+    public List<Securities> getAllSecurities() {
         return securityService.getAllSecurities();
     }
 
 
-//    @GetMapping("/securities/{secID}")
+    //
     @RequestMapping(value="/securities/{secID}", method=RequestMethod.GET)
     public ResponseEntity < Securities > getSecuritiesById(@PathVariable(value = "secID") int id)
             throws ResourceNotFoundException {
         Securities sec = securityService.getSecuritiesById(id);
         return ResponseEntity.ok().body(sec);
     }
+//
+//    @GetMapping("/securities/{status}")
+//    public ResponseEntity < Securities > getbyStatus(@PathVariable(value = "Status") String status)
+//            throws ResourceNotFoundException {
+//        Securities sec = securityService.getbyStatus(status);
+//        return ResponseEntity.ok().body(sec);
+//    }
 }
+//
+//
+
+
