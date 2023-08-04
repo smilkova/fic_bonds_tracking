@@ -37,8 +37,9 @@ public class SecurityController {
     }
 
 
-    @GetMapping("/securities/{secID}")
-    public ResponseEntity < Securities > getSecuritiesById(@PathVariable(value = "secid") int id)
+//    @GetMapping("/securities/{secID}")
+    @RequestMapping(value="/securities/{secID}", method=RequestMethod.GET)
+    public ResponseEntity < Securities > getSecuritiesById(@PathVariable(value = "secID") int id)
             throws ResourceNotFoundException {
         Securities sec = securityService.getSecuritiesById(id);
         return ResponseEntity.ok().body(sec);

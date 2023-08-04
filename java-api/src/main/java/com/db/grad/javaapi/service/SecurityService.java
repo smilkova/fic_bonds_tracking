@@ -69,7 +69,8 @@ public class SecurityService implements ISecurityService {
 
 
     @Override
-    public Securities getSecuritiesById(int uniqueId) {
+    public Securities getSecuritiesById(int uniqueId)
+    {
         return itsSecuritysRepo.findById(uniqueId).get();
     }
 
@@ -145,19 +146,22 @@ public class SecurityService implements ISecurityService {
     }
 
     @Override
-    public Securities findRecentMature(Securities today_date) {
+    public Securities findByRecentAndNearMaturity(String today_date) {
         return null;
     }
 
-
 //    @Override
-//    public Securities findRecentMature(String today_date) {
+//    public Securities findByRecentAndNearMaturity(String today_date) {
 //        //being passed date string by user input
 //        List<Securities> maturing = itsSecuritysRepo.findByRecentAndNearMaturity();
 //        Dog dogToFind = new Dog();
 //        dogToFind.setName(dogsName);
 //        List<Dog> dogs = itsDogsRepo.findByName(dogToFind);
 //    }
+//
+//
+
+
 
     @Override
     public Securities findDates(Securities start, Securities end) {

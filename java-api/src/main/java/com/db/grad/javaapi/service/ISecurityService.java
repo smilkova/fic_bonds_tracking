@@ -20,7 +20,7 @@ public interface ISecurityService {
 
     public Securities getbyStatus(String stat);
 
-    public Securities findRecentMature(Securities today_date);
+    public Securities findByRecentAndNearMaturity(String today_date);
     public Securities findDates(Securities start, Securities end);
 
 //    public Securities updateUserDetails(Securities UserToUpdate);
