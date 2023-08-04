@@ -1,11 +1,13 @@
 package com.db.grad.javaapi.service;
 
+import com.db.grad.javaapi.model.Book;
 import com.db.grad.javaapi.model.Users;
 import com.db.grad.javaapi.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -57,16 +59,15 @@ public class UsersService implements IUsersService {
 
     @Override
     public Users getUsersByEmail(String UserEmail) {
-        Users UserToFind = new Users();
-        //creates empty user object and assigns needed name
-        UserToFind.setEmail(UserEmail);
-        List<Users> ManyUsers = itsUsersRepo.findByUserEmail(UserToFind);
-        Users result = null;
-
-        if( ManyUsers.size() == 1)
-            result = ManyUsers.get(0);
-        //if there is a user that matches return it if not return nothing
-        return result;
+        List<Users> users = itsUsersRepo.findAll();
+        int count = 0;
+        for (Users bb : users) {
+            if (Objects.equals(bb.getEmail().toLowerCase(),UserEmail.toLowerCase())){
+                return users.get(count);
+            }
+            count += 1;
+        }
+        return null;
     }
 
     @Override

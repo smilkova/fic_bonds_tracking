@@ -5,6 +5,7 @@ import com.db.grad.javaapi.model.BookUser;
 import com.db.grad.javaapi.model.Users;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IBookUserService {
     public List<BookUser> getAllBookUsers();
@@ -13,11 +14,11 @@ public interface IBookUserService {
 
     public long getNoOfBookUsers();
 
-    public boolean removeBookUser(int uniqueId);
+    public boolean removeBookUser(int bookId, int userId);
 
-    public BookUser findUsersForBook(Book bookId);
+    public Optional<List<Integer>> findUsersForBook(int bookId);
 
-    public BookUser findBooksForUser(Users userId);
+    public Optional<List<Integer>> findBooksForUser(int userId);
 
     public BookUser updateBookUserDetails(BookUser UserToUpdate);
 }

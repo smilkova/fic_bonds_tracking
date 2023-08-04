@@ -3,12 +3,13 @@ package com.db.grad.javaapi.service;
 import com.db.grad.javaapi.model.Book;
 import com.db.grad.javaapi.model.BookUser;
 import com.db.grad.javaapi.model.Users;
+import com.db.grad.javaapi.repository.BookRepository;
 import com.db.grad.javaapi.repository.BookUserRepository;
+import com.db.grad.javaapi.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BookUserService implements IBookUserService{
@@ -36,47 +37,46 @@ public class BookUserService implements IBookUserService{
     }
 
     @Override
-    public boolean removeBookUser(int uniqueId) {
+    public boolean removeBookUser(int bookId, int userId) {
         boolean result = false;
+        List<BookUser> bookusers = itsBookUserRepo.findAll();
+        for (BookUser bu : bookusers) {
+            if (Objects.equals(bu.getBook_id().getBook_id(), bookId)
+                    & Objects.equals(bu.getUser_id().getUser_id(), userId)){
+                System.out.println(bu);
 
-        Optional<BookUser> theUser = itsBookUserRepo.findById(uniqueId);
-        //may have a null value
-
-        if(theUser.isPresent()) //if the user isnt null
-        {
-            itsBookUserRepo.delete(theUser.get());
-            result = true;
+                itsBookUserRepo.delete(bu);
+                result = true;
+                break;
+            }
         }
-
         return  result;
     }
 
     @Override
-    public BookUser findUsersForBook(Book bookId) {
-        BookUser UserToFind = new BookUser();
-        //creates empty user object and assigns needed name
-        UserToFind.setBook_id(bookId);
-        List<BookUser> ManyUsers = itsBookUserRepo.findUsersForBook(UserToFind);
-        BookUser result = null;
-
-        if( ManyUsers.size() == 1)
-            result = ManyUsers.get(0);
-        //if there is a user that matches return it if not return nothing
-        return result;
+    public Optional<List<Integer>> findUsersForBook(int bookId) {
+        List<Integer> userIDs = new LinkedList<Integer>();
+        List<BookUser> bookusers = itsBookUserRepo.findAll();
+        for (BookUser bu : bookusers) {
+            if (Objects.equals(bu.getBook_id().getBook_id(), bookId)){
+                int id = bu.getUser_id().getUser_id();
+                userIDs.add(id);
+            }
+        }  //if there is a user that matches return it if not return nothing
+        return Optional.of(userIDs);
     }
 
     @Override
-    public BookUser findBooksForUser(Users userId) {
-        BookUser BookToFind = new BookUser();
-        //creates empty user object and assigns needed name
-        BookToFind.setUser_id(userId);
-        List<BookUser> ManyUsers = itsBookUserRepo.findUsersForBook(BookToFind);
-        BookUser result = null;
-
-        if( ManyUsers.size() == 1)
-            result = ManyUsers.get(0);
-        //if there is a user that matches return it if not return nothing
-        return result;
+    public Optional<List<Integer>> findBooksForUser(int userId) {
+        List<Integer> bookIDs = new LinkedList<Integer>();
+        List<BookUser> bookusers = itsBookUserRepo.findAll();
+        for (BookUser bu : bookusers) {
+            if (Objects.equals(bu.getUser_id().getUser_id(), userId)){
+                int id = bu.getBook_id().getBook_id();
+                bookIDs.add(id);
+            }
+        }  //if there is a user that matches return it if not return nothing
+        return Optional.of(bookIDs);
     }
 
     @Override

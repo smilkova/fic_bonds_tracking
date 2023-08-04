@@ -72,36 +72,15 @@ public class BookService implements IBooksService {
     @Override
     public Book getBookByName(String BooksName)
     {
-
-
-//        //creates empty book opject and assigns needed name
-//        BookToFind.setName(BooksName);
-//        List<Book> books = itsBooksRepo.findByBookName(BookToFind);
         List<Book> books = itsBooksRepo.findAll();
-//        System.out.println(books);
         int count = 0;
-        int finalCount=0;
         for (Book bb : books) {
-            System.out.println(BooksName);
-            System.out.println(bb.getName());
-
             if (Objects.equals(bb.getName(),BooksName)){
-//                System.out.println(books.get(count));
-                finalCount = count;
-
-
+                return books.get(count);
             }
             count += 1;
-
         }
-//        Book result = null;
-
-//        Book result = null;
-//
-//        if( books.size() == 1)
-//            result = books.get(0);
-//            //if there is a boook that matches return it if not return nothing
-        return books.get(finalCount);
+        return null;
     }
 
     @Override
