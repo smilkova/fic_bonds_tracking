@@ -1,11 +1,15 @@
 package com.db.grad.javaapi.service;
 import com.db.grad.javaapi.repository.BookRepository;
+//import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.db.grad.javaapi.model.Book;
+//import sun.tools.jconsole.JConsole;
+
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 //the point of the service is to take the query supplied by the repo and
@@ -66,18 +70,38 @@ public class BookService implements IBooksService {
     }
 
     @Override
-    public Book getBookByName(String BooksName )
+    public Book getBookByName(String BooksName)
     {
-        Book BookToFind = new Book();
-        //creates empty book opject and assigns needed name
-        BookToFind.setName(BooksName);
-        List<Book> books = itsBooksRepo.findByBookName(BookToFind);
-        Book result = null;
 
-        if( books.size() == 1)
-            result = books.get(0);
-            //if there is a boook that matches return it if not return nothing
-        return result;
+
+//        //creates empty book opject and assigns needed name
+//        BookToFind.setName(BooksName);
+//        List<Book> books = itsBooksRepo.findByBookName(BookToFind);
+        List<Book> books = itsBooksRepo.findAll();
+//        System.out.println(books);
+        int count = 0;
+        int finalCount=0;
+        for (Book bb : books) {
+            System.out.println(BooksName);
+            System.out.println(bb.getName());
+
+            if (Objects.equals(bb.getName(),BooksName)){
+//                System.out.println(books.get(count));
+                finalCount = count;
+
+
+            }
+            count += 1;
+
+        }
+//        Book result = null;
+
+//        Book result = null;
+//
+//        if( books.size() == 1)
+//            result = books.get(0);
+//            //if there is a boook that matches return it if not return nothing
+        return books.get(finalCount);
     }
 
     @Override
