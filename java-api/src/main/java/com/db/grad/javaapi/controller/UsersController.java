@@ -29,10 +29,10 @@ public class UsersController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity < Users > getUserById(@PathVariable(value = "user_id") int id)
+    @GetMapping("/users/{user_id}")
+    public ResponseEntity < Users > getUserById(@PathVariable(value = "user_id") int user_id)
             throws ResourceNotFoundException {
-        Users users = userService.getUsersById(id);
+        Users users = userService.getUsersById(user_id);
         return ResponseEntity.ok().body(users);
     }
     //    TODO: might have to change the mapping
@@ -48,18 +48,18 @@ public class UsersController {
         return userService.addUser(user);
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity < Users > updateUsers(@PathVariable(value = "user_id") int id,
+    @PutMapping("/users/{user_id}")
+    public ResponseEntity < Users > updateUsers(@PathVariable(value = "user_id") int user_id,
                                               @Valid @RequestBody Users userDetails) throws ResourceNotFoundException {
 
         final Users updatedUsers = userService.updateUserDetails(userDetails);
         return ResponseEntity.ok(updatedUsers);
     }
 
-    @DeleteMapping("/users/{id}")
-    public Map < String, Boolean > deleteUsers(@PathVariable(value = "id") int id)
+    @DeleteMapping("/users/{user_id}")
+    public Map < String, Boolean > deleteUsers(@PathVariable(value = "user_id") int user_id)
             throws ResourceNotFoundException {
-        boolean removed = userService.removeUser(id);
+        boolean removed = userService.removeUser(user_id);
 
         Map < String, Boolean > response = new HashMap <>();
         if( removed )

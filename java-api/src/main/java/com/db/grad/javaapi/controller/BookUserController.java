@@ -32,16 +32,16 @@ public class BookUserController {
     }
 
     @GetMapping("/bookuser/{book_id}")
-    public ResponseEntity < BookUser > findUsersForBook(@PathVariable(value = "book_id") Book id)
+    public ResponseEntity < BookUser > findUsersForBook(@PathVariable(value = "book_id") Book book_id)
             throws ResourceNotFoundException {
-        BookUser users = bookUserService.findUsersForBook(id);
+        BookUser users = bookUserService.findUsersForBook(book_id);
         return ResponseEntity.ok().body(users);
     }
     //    TODO: might have to change the mapping
     @GetMapping("/bookuser/{user_id}")
-    public ResponseEntity < BookUser > findBooksForUser(@PathVariable(value = "user_id") Users id)
+    public ResponseEntity < BookUser > findBooksForUser(@PathVariable(value = "user_id") Users user_id)
             throws ResourceNotFoundException {
-        BookUser users = bookUserService.findBooksForUser(id);
+        BookUser users = bookUserService.findBooksForUser(user_id);
         return ResponseEntity.ok().body(users);
     }
 

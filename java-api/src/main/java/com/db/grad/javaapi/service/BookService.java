@@ -71,11 +71,11 @@ public class BookService implements IBooksService {
         Book BookToFind = new Book();
         //creates empty book opject and assigns needed name
         BookToFind.setName(BooksName);
-        List<Book> Books = itsBooksRepo.findByBookName(BookToFind);
+        List<Book> books = itsBooksRepo.findByBookName(BookToFind);
         Book result = null;
 
-        if( Books.size() == 1)
-            result = Books.get(0);
+        if( books.size() == 1)
+            result = books.get(0);
             //if there is a boook that matches return it if not return nothing
         return result;
     }

@@ -29,14 +29,14 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/books/{id}")
-    public ResponseEntity < Book > getBondById(@PathVariable(value = "book_id") int id)
+    @GetMapping("/books/{book_id}")
+    public ResponseEntity < Book > getBookById(@PathVariable(value = "book_id") int id)
             throws ResourceNotFoundException {
         Book books = bookService.getBookById(id);
         return ResponseEntity.ok().body(books);
     }
 //    TODO: might have to change the mapping
-    @GetMapping("/books/{name}")
+    @GetMapping("/booksbyname/{name}")
     public ResponseEntity < Book > getBookByName(@PathVariable(value = "name") String name)
             throws ResourceNotFoundException {
         Book books = bookService.getBookByName(name);
@@ -48,18 +48,18 @@ public class BookController {
         return bookService.addBook(book);
     }
 
-    @PutMapping("/books/{id}")
-    public ResponseEntity < Book > updateBook(@PathVariable(value = "book_id") int id,
+    @PutMapping("/books/{book_id}")
+    public ResponseEntity < Book > updateBook(@PathVariable(value = "book_id") int book_id,
                                             @Valid @RequestBody Book bookDetails) throws ResourceNotFoundException {
 
         final Book updatedBooks = bookService.updateBookDetails(bookDetails);
         return ResponseEntity.ok(updatedBooks);
     }
 
-    @DeleteMapping("/books/{id}")
-    public Map < String, Boolean > deleteBook(@PathVariable(value = "id") int id)
+    @DeleteMapping("/books/{book_id}")
+    public Map < String, Boolean > deleteBook(@PathVariable(value = "book_id") int book_id)
             throws ResourceNotFoundException {
-        boolean removed = bookService.removeBook(id);
+        boolean removed = bookService.removeBook(book_id);
 
         Map < String, Boolean > response = new HashMap <>();
         if( removed )
