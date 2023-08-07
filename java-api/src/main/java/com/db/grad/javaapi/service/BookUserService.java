@@ -54,12 +54,12 @@ public class BookUserService implements IBookUserService{
     }
 
     @Override
-    public Optional<List<Integer>> findUsersForBook(int bookId) {
-        List<Integer> userIDs = new LinkedList<Integer>();
+    public Optional<List<Users>> findUsersForBook(int bookId) {
+        List<Users> userIDs = new LinkedList<>();
         List<BookUser> bookusers = itsBookUserRepo.findAll();
         for (BookUser bu : bookusers) {
             if (Objects.equals(bu.getBook_id().getBook_id(), bookId)){
-                int id = bu.getUser_id().getUser_id();
+                Users id = bu.getUser_id();
                 userIDs.add(id);
             }
         }  //if there is a user that matches return it if not return nothing
@@ -67,12 +67,12 @@ public class BookUserService implements IBookUserService{
     }
     // TODO needs extra logic to get the actual Book/Users entries
     @Override
-    public Optional<List<Integer>> findBooksForUser(int userId) {
-        List<Integer> bookIDs = new LinkedList<Integer>();
+    public Optional<List<Book>> findBooksForUser(int userId) {
+        List<Book> bookIDs = new LinkedList<>();
         List<BookUser> bookusers = itsBookUserRepo.findAll();
         for (BookUser bu : bookusers) {
             if (Objects.equals(bu.getUser_id().getUser_id(), userId)){
-                int id = bu.getBook_id().getBook_id();
+                Book id = bu.getBook_id();
                 bookIDs.add(id);
             }
         }  //if there is a user that matches return it if not return nothing

@@ -16,9 +16,9 @@ public interface IBookUserService {
 
     public boolean removeBookUser(int bookId, int userId);
 
-    public Optional<List<Integer>> findUsersForBook(int bookId);
+    public Optional<List<Users>> findUsersForBook(int bookId);
 
-    public Optional<List<Integer>> findBooksForUser(int userId);
+    public Optional<List<Book>> findBooksForUser(int userId);
 
     public BookUser updateBookUserDetails(BookUser UserToUpdate);
 }
