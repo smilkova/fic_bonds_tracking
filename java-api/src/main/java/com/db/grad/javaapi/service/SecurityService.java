@@ -82,13 +82,13 @@ public class SecurityService implements ISecurityService {
 
 
     @Override
-    public List<Securities> findByRecentAndNearMaturity(String today_date) {
+    public Optional<List<Securities>> findByRecentAndNearMaturity(String today_date) {
         System.out.println(today_date);
         List<Securities> checkList = itsSecuritysRepo.findAll();
-        List<Securities> matList = new ArrayList<Securities>(); //list w matured bonds
-        LocalDate Todaydate = LocalDate.parse(today_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy")); //today's date in right format
+        List<Securities> matList = new LinkedList<>(); //list w matured bonds
+        LocalDate Todaydate = LocalDate.parse(today_date, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //today's date in right format
         for (Securities ss : checkList){
-            LocalDate MatDate = LocalDate.parse(ss.getMature_date(), DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+            LocalDate MatDate = LocalDate.parse(ss.getMature_date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 //           compareTo():returns 0 if equal. returns value greater than 0 if date 1 is after date 2
 //            returns value less than zero if date1 is before2
             long daysBetween = ChronoUnit.DAYS.between(Todaydate, MatDate);
@@ -100,7 +100,7 @@ public class SecurityService implements ISecurityService {
             }
         }
 
-        return matList;
+        return Optional.of(matList);
     }
 
     @Override
