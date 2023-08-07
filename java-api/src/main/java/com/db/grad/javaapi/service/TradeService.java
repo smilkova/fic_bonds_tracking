@@ -3,12 +3,14 @@ package com.db.grad.javaapi.service;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Service
 public class TradeService implements ITradeService{
 
     private TradeRepository itsTradeRepo;
@@ -55,7 +57,7 @@ public class TradeService implements ITradeService{
         List<Integer> allTrades = new LinkedList<>();
         List<Trade> trades = itsTradeRepo.findAll();
         for (Trade trade : trades) {
-            if (Objects.equals(trade.getBook_id(), bookId)){
+            if (Objects.equals(trade.getBook_id().getBook_id(), bookId)){
                 allTrades.add(trade.getTrade_id());
             }
         }
@@ -83,7 +85,7 @@ public class TradeService implements ITradeService{
         List<Trade> allTrades = new LinkedList<>();
         List<Trade> trades = itsTradeRepo.findAll();
         for (Trade trade : trades) {
-            if (Objects.equals(trade.getSecurity_id(), securityId)){
+            if (Objects.equals(trade.getSecurity_id().getSecurity_id(), securityId)){
                 allTrades.add(trade);
             }
         }

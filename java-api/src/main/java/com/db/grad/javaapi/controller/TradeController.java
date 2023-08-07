@@ -1,10 +1,7 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
-import com.db.grad.javaapi.model.Book;
 import com.db.grad.javaapi.model.Trade;
-import com.db.grad.javaapi.model.Users;
-import com.db.grad.javaapi.service.TradeService;
 import com.db.grad.javaapi.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,27 +25,48 @@ public class TradeController {
         tradeService = ts;
     }
 
-    @GetMapping("/trade")
-    public List <Trade> getAllTrade() {
+    @GetMapping("/trades")
+    public List <Trade> getAllTrades() {
         return tradeService.getAllTrades();
     }
 
     @GetMapping("/tradeByBookID/{book_id}")
     public ResponseEntity < Optional<List<Integer>> > findUsersForBook(@PathVariable(value = "book_id") int book_id)
             throws ResourceNotFoundException {
-        Optional<List<Integer>> users = bookUserService.findUsersForBook(book_id);
-        return ResponseEntity.ok().body(users);
-    }
-    //    TODO: might have to change the mapping
-    @GetMapping("/tradeByUserID/{user_id}")
-    public ResponseEntity < Optional<List<Integer>> > findBooksForUser(@PathVariable(value = "user_id") int user_id)
-            throws ResourceNotFoundException {
-        Optional<List<Integer>> users = bookUserService.findBooksForUser(user_id);
+        Optional<List<Integer>> users = tradeService.getTradesByBookId(book_id);
         return ResponseEntity.ok().body(users);
     }
 
-    @PostMapping("/trade")
-    public Trade createTrade(@Valid @RequestBody Trade user) {
-        return tradeService.addTrade(user);
+    @GetMapping("/tradeBySecuritiesID/{security_id}")
+    public ResponseEntity < Optional<List<Trade>> > findTradesBySecurity(@PathVariable(value = "security_id") int security_id)
+            throws ResourceNotFoundException {
+        Optional<List<Trade>> trades = tradeService.getTradeBySecuritiesId(security_id);
+        return ResponseEntity.ok().body(trades);
+    }
+
+    @GetMapping("/tradesForUser/{book_ids}")
+    public ResponseEntity < Optional<List<Trade>> > findTradesForUser(@PathVariable(value = "book_ids") List<Integer> book_ids)
+            throws ResourceNotFoundException {
+        Optional<List<Trade>> users = tradeService.getAllTradesForUser(book_ids);
+        return ResponseEntity.ok().body(users);
+    }
+
+    @PostMapping("/trades")
+    public Trade createTrade(@Valid @RequestBody Trade trade) {
+        return tradeService.addTrade(trade);
+    }
+
+    @DeleteMapping("/trades/{trade_id}")
+    public Map < String, Boolean > deleteUsers(@PathVariable(value = "trade_id") int trade_id)
+            throws ResourceNotFoundException {
+        boolean removed = tradeService.removeTrade(trade_id);
+
+        Map < String, Boolean > response = new HashMap <>();
+        if( removed )
+            response.put("deleted", Boolean.TRUE);
+        else
+            response.put("deleted", Boolean.FALSE);
+
+        return response;
     }
 }
