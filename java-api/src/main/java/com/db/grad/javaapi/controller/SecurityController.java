@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -23,12 +24,15 @@ public class SecurityController {
         securityService = sv;
     }
 
-//    @GetMapping("/securities/{date}")
-//    public ResponseEntity<Securities> findRecentMature(@PathVariable(value = "date") String date)
-//            throws ResourceNotFoundException {
-//        Securities security = securityService.findRecentMature(date);
-//        return ResponseEntity.ok().body(security);
-//    }
+   @GetMapping("/securities/{date}")
+
+
+    public List<Securities>findByRecentAndNearMaturity(@PathVariable(value = "date") String date)
+            throws ResourceNotFoundException {
+        List<Securities> matSecurity = securityService.findByRecentAndNearMaturity(date);
+//        return ResponseEntity.ok().body(matSecurity);
+        return matSecurity;
+    }
 
 
     @GetMapping("/securities")

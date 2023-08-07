@@ -2,6 +2,7 @@ package com.db.grad.javaapi.service;
 import com.db.grad.javaapi.model.Securities;
 
 import javax.sound.midi.Sequence;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ISecurityService {
@@ -19,7 +20,7 @@ public interface ISecurityService {
 
     public Securities getbyStatus(String stat);
 
-    public Securities findByRecentAndNearMaturity(String today_date);
+    public List<Securities> findByRecentAndNearMaturity(String today_date);
     public Securities findDates(Securities start, Securities end);
 
 //    public Securities updateUserDetails(Securities UserToUpdate);
