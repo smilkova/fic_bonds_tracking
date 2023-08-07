@@ -65,7 +65,7 @@ public class BookUserService implements IBookUserService{
         }  //if there is a user that matches return it if not return nothing
         return Optional.of(userIDs);
     }
-
+    // TODO needs extra logic to get the actual Book/Users entries
     @Override
     public Optional<List<Integer>> findBooksForUser(int userId) {
         List<Integer> bookIDs = new LinkedList<Integer>();
