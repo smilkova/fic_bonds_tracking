@@ -9,9 +9,9 @@ INSERT INTO book(book_id, name) VALUES (5,'trading_book_6');
 
 
 --users database
-INSERT INTO users(user_id, name, email, role) VALUES (1, 'Christopher Chan', 'Chris1@bank.com', 'Trader');
-INSERT INTO users(user_id, name, email, role) VALUES (2, 'Jimin Park', 'Jimin1@bank.com', 'Trader');
-INSERT INTO users(user_id, name, email, role) VALUES (3, 'Felix Lee', 'fLee@bank.com', 'Trader');
+INSERT INTO users(user_id, name, email, role, pass) VALUES (1, 'Christopher Chan', 'Chris1@bank.com', 'Trader', 'hi');
+INSERT INTO users(user_id, name, email, role, pass) VALUES (2, 'Jimin Park', 'Jimin1@bank.com', 'Trader', 'hii');
+INSERT INTO users(user_id, name, email, role, pass) VALUES (3, 'Felix Lee', 'fLee@bank.com', 'Trader', 'hiii');
 
 
 --book_users

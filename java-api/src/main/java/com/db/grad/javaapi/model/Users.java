@@ -16,9 +16,20 @@ public class Users {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Column(name = "pass", nullable = false)
+    private String pass;
+
 
     public int getUser_id() {
         return user_id;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public void setUser_id(int user_id) {
@@ -56,6 +67,7 @@ public class Users {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", pass=" + pass +
                 '}';
     }
 }

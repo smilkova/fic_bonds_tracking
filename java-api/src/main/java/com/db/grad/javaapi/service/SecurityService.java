@@ -1,7 +1,4 @@
 package com.db.grad.javaapi.service;
-import com.db.grad.javaapi.model.Book;
-import com.db.grad.javaapi.model.BookUser;
-import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.repository.SecuritiesRepository;
 //import com.sun.org.apache.bcel.internal.generic.NEW;
 //import jdk.vm.ci.meta.Local;
@@ -10,14 +7,8 @@ import org.springframework.stereotype.Service;
 import com.db.grad.javaapi.model.Securities;
 //import sun.tools.jconsole.JConsole;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.temporal.ChronoUnit;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-
-
-import javax.sound.midi.Sequence;
-import java.text.SimpleDateFormat;
 
 //the point of the service is to take the query supplied by the repo and
 //make it readable for the controller
@@ -103,6 +94,19 @@ public class SecurityService implements ISecurityService {
         return Optional.of(matList);
     }
 
+    @Override
+    public Optional<List<Securities>> findMatToday(String today){
+        List<Securities> all = itsSecuritysRepo.findAll();
+        List<Securities> matured = new LinkedList<>();
+        for (Securities ss : all){
+            System.out.println(ss.getMature_date());
+            System.out.println(today);
+            if (Objects.equals(ss.getMature_date(),today)){
+                matured.add(ss);
+            }
+        }
+        return Optional.of(matured);
+    }
     @Override
     public Securities findDates(Securities start, Securities end) {
         return null;

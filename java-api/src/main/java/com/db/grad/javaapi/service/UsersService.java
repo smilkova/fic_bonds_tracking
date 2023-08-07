@@ -1,6 +1,5 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Book;
 import com.db.grad.javaapi.model.Users;
 import com.db.grad.javaapi.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,32 @@ public class UsersService implements IUsersService {
     public List<Users> getAllUsers() {
         return itsUsersRepo.findAll();
     }
+
+
+
+    @Override
+    public Users checkLogin(List<String> loginAttempt) {
+        int count = -1;
+        int user = 0;
+        String username = loginAttempt.get(0);
+//        username
+        String pw = loginAttempt.get(1);
+        for (Users uu:itsUsersRepo.findAll()) {
+            count =+ 1;
+            if (Objects.equals(uu.getEmail(),loginAttempt.get(0))) {
+
+                user = count;
+                System.out.println(user);
+                if(Objects.equals(itsUsersRepo.getById(user).getPass(), loginAttempt.get(1))) {
+                    System.out.println(itsUsersRepo.getById(user));
+                    return itsUsersRepo.getById(user);
+                }
+            }
+        }
+        return null;
+    }
+
+
 
     @Override
     public Users addUser(Users theUser) {

@@ -22,6 +22,9 @@ public interface ISecurityService {
     public Securities getbyStatus(String stat);
 
     public Optional<List<Securities>> findByRecentAndNearMaturity(String today_date);
+
+    Optional<List<Securities>> findMatToday(String today);
+
     public Securities findDates(Securities start, Securities end);
 
 //    public Securities updateUserDetails(Securities UserToUpdate);

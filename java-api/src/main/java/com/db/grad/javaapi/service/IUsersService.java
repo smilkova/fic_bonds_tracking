@@ -8,6 +8,9 @@ import java.util.List;
 public interface IUsersService {
     public List<Users> getAllUsers();
 
+
+    Users checkLogin(List<String> loginAttempt);
+
     public Users addUser(Users theUser);
 
     public long getNoOfUsers();

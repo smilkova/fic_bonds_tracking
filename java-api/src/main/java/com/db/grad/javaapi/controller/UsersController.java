@@ -1,8 +1,10 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
+import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.model.Users;
 import com.db.grad.javaapi.service.UsersService;
+import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v2")
@@ -68,5 +71,12 @@ public class UsersController {
             response.put("deleted", Boolean.FALSE);
 
         return response;
+    }
+
+    @GetMapping("/users/{login_attempt}")
+    public ResponseEntity <Users> checkit(@PathVariable(value = "login_attempt") List<String> login_attempt)
+            throws ResourceNotFoundException {
+      Users users = userService.checkLogin(login_attempt);
+        return ResponseEntity.ok().body(users);
     }
 }

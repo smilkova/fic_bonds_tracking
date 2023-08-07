@@ -47,6 +47,14 @@ public class SecurityController {
         Securities sec = securityService.getSecuritiesById(id);
         return ResponseEntity.ok().body(sec);
     }
+
+    @GetMapping("/securitiesByDate/{today}")
+    public ResponseEntity <Optional<List<Securities>>> findMatToday(@PathVariable(value = "today") String today)
+            throws ResourceNotFoundException {
+        Optional<List<Securities>> matSecurity = securityService.findMatToday(today);
+        return ResponseEntity.ok().body(matSecurity);
+    }
+    }
 //
 //    @GetMapping("/securities/{status}")
 //    public ResponseEntity < Securities > getbyStatus(@PathVariable(value = "Status") String status)
@@ -54,7 +62,7 @@ public class SecurityController {
 //        Securities sec = securityService.getbyStatus(status);
 //        return ResponseEntity.ok().body(sec);
 //    }
-}
+
 //
 //
 

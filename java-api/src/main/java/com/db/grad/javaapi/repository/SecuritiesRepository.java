@@ -1,6 +1,7 @@
 package com.db.grad.javaapi.repository;
 
 import com.db.grad.javaapi.model.Securities;
+import com.db.grad.javaapi.model.Trade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,4 +20,8 @@ public interface SecuritiesRepository extends JpaRepository<Securities, Integer>
                     "mature_date >= :start_date and" +
                     "mature_date <= :end_date")
     List<Securities> findBySpecificDates(Securities start_date, Securities end_date);
+
+    @Query(nativeQuery = true,
+            value = "select * from trade t join security s on t.security_id = s.security_id")
+    List<Securities> joinSandB(Securities start_date, Securities end_date);
 }
