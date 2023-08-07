@@ -33,6 +33,20 @@ public class SecurityController {
         return ResponseEntity.ok().body(matSecurity);
     }
 
+    @GetMapping("/securitiesMaturingToday/{date}")
+    public ResponseEntity <Optional<List<Securities>> >findMaturingToday(@PathVariable(value = "date") String date)
+            throws ResourceNotFoundException {
+        Optional<List<Securities>> matSecurity = securityService.findMaturingToday(date);
+        return ResponseEntity.ok().body(matSecurity);
+    }
+
+    @GetMapping("/securitiesBetweenDates/{start_date}/{end_date}")
+    public ResponseEntity <Optional<List<Securities>> >findMaturingToday(@PathVariable(value = "start_date") String start_date,
+                                                                         @PathVariable(value = "end_date") String end_date)
+            throws ResourceNotFoundException {
+        Optional<List<Securities>> matSecurity = securityService.findDates(start_date, end_date);
+        return ResponseEntity.ok().body(matSecurity);
+    }
 
     @GetMapping("/securities")
     public List<Securities> getAllSecurities() {
@@ -47,6 +61,8 @@ public class SecurityController {
         Securities sec = securityService.getSecuritiesById(id);
         return ResponseEntity.ok().body(sec);
     }
+
+
 //
 //    @GetMapping("/securities/{status}")
 //    public ResponseEntity < Securities > getbyStatus(@PathVariable(value = "Status") String status)

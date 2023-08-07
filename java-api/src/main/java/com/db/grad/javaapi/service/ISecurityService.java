@@ -17,12 +17,13 @@ public interface ISecurityService {
 
     public Securities getSecuritiesById(int uniqueId);
 
-
-
     public Securities getbyStatus(String stat);
 
     public Optional<List<Securities>> findByRecentAndNearMaturity(String today_date);
-    public Securities findDates(Securities start, Securities end);
+
+    public Optional<List<Securities>> findMaturingToday(String today_date);
+
+    public Optional<List<Securities>> findDates(String start, String end);
 
 //    public Securities updateUserDetails(Securities UserToUpdate);
 }
