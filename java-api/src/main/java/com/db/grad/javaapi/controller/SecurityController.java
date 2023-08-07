@@ -40,6 +40,13 @@ public class SecurityController {
         return ResponseEntity.ok().body(matSecurity);
     }
 
+    @GetMapping("/securitiesExpired/{date}")
+    public ResponseEntity <Optional<List<Securities>> >findExpired(@PathVariable(value = "date") String date)
+            throws ResourceNotFoundException {
+        Optional<List<Securities>> matSecurity = securityService.findExpired(date);
+        return ResponseEntity.ok().body(matSecurity);
+    }
+
     @GetMapping("/securitiesBetweenDates/{start_date}/{end_date}")
     public ResponseEntity <Optional<List<Securities>> >findMaturingToday(@PathVariable(value = "start_date") String start_date,
                                                                          @PathVariable(value = "end_date") String end_date)

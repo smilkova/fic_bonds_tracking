@@ -23,6 +23,8 @@ public interface ISecurityService {
 
     public Optional<List<Securities>> findMaturingToday(String today_date);
 
+    public Optional<List<Securities>> findExpired(String today_date);
+
     public Optional<List<Securities>> findDates(String start, String end);
 
 //    public Securities updateUserDetails(Securities UserToUpdate);
