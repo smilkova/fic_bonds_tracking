@@ -1,6 +1,8 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -89,10 +91,12 @@ public class Securities {
     }
 
     public String getMature_date() {
+
         return mature_date;
     }
 
     public void setMature_date(String mature_date) {
+
         this.mature_date = mature_date;
     }
 

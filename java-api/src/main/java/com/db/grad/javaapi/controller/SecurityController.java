@@ -6,14 +6,17 @@ import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.model.Securities;
 import com.db.grad.javaapi.service.BookService;
 import com.db.grad.javaapi.service.SecurityService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v5")
 @CrossOrigin(origins = "http://localhost:3000")
 public class SecurityController {
     private SecurityService securityService;
@@ -23,12 +26,12 @@ public class SecurityController {
         securityService = sv;
     }
 
-//    @GetMapping("/securities/{date}")
-//    public ResponseEntity<Securities> findRecentMature(@PathVariable(value = "date") String date)
-//            throws ResourceNotFoundException {
-//        Securities security = securityService.findRecentMature(date);
-//        return ResponseEntity.ok().body(security);
-//    }
+    @GetMapping("/securitiesByDate/{date}")
+    public ResponseEntity <Optional<List<Securities>> >findByRecentAndNearMaturity(@PathVariable(value = "date") String date)
+            throws ResourceNotFoundException {
+        Optional<List<Securities>> matSecurity = securityService.findByRecentAndNearMaturity(date);
+        return ResponseEntity.ok().body(matSecurity);
+    }
 
 
     @GetMapping("/securities")

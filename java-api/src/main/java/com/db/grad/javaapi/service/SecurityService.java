@@ -4,16 +4,20 @@ import com.db.grad.javaapi.model.BookUser;
 import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.repository.SecuritiesRepository;
 //import com.sun.org.apache.bcel.internal.generic.NEW;
+//import jdk.vm.ci.meta.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.db.grad.javaapi.model.Securities;
 //import sun.tools.jconsole.JConsole;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 
 import javax.sound.midi.Sequence;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
 
 //the point of the service is to take the query supplied by the repo and
 //make it readable for the controller
@@ -78,10 +82,25 @@ public class SecurityService implements ISecurityService {
 
 
     @Override
-    public Securities findByRecentAndNearMaturity(String today_date) {
-        String startDay =  today_date.substring(0,2); // prints the day as an int
-        //"05/08/2021"
-        return null;
+    public Optional<List<Securities>> findByRecentAndNearMaturity(String today_date) {
+        System.out.println(today_date);
+        List<Securities> checkList = itsSecuritysRepo.findAll();
+        List<Securities> matList = new LinkedList<>(); //list w matured bonds
+        LocalDate Todaydate = LocalDate.parse(today_date, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //today's date in right format
+        for (Securities ss : checkList){
+            LocalDate MatDate = LocalDate.parse(ss.getMature_date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//           compareTo():returns 0 if equal. returns value greater than 0 if date 1 is after date 2
+//            returns value less than zero if date1 is before2
+            long daysBetween = ChronoUnit.DAYS.between(Todaydate, MatDate);
+            //can return a negative number
+            //looking for negative 5 to positive 5 for before and after
+            if ((daysBetween >=-5) && (daysBetween <=5)) {
+                //view bonds due for maturity within last and next five days
+                matList.add(ss);
+            }
+        }
+
+        return Optional.of(matList);
     }
 
     @Override
