@@ -86,12 +86,12 @@ public class SecurityService implements ISecurityService {
         System.out.println(today_date);
         List<Securities> checkList = itsSecuritysRepo.findAll();
         List<Securities> matList = new LinkedList<>(); //list w matured bonds
-        LocalDate Todaydate = LocalDate.parse(today_date, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //today's date in right format
+//        LocalDate Todaydate = LocalDate.parse(today_date, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //today's date in right format
         for (Securities ss : checkList){
-            LocalDate MatDate = LocalDate.parse(ss.getMature_date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//            LocalDate MatDate = LocalDate.parse(ss.getMature_date(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 //           compareTo():returns 0 if equal. returns value greater than 0 if date 1 is after date 2
 //            returns value less than zero if date1 is before2
-            long daysBetween = ChronoUnit.DAYS.between(Todaydate, MatDate);
+            long daysBetween = ChronoUnit.DAYS.between(LocalDate.parse(today_date), LocalDate.parse(ss.getMature_date()));
             //can return a negative number
             //looking for negative 5 to positive 5 for before and after
             if ((daysBetween >=-5) && (daysBetween <=5)) {
